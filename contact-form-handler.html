@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -34,6 +34,65 @@
 </head>
 
 <body id="page-top" class="index">
+	<?php
+
+$errors = ”;
+
+$myemail = ‘pj649@nyu.edu’;//<—–Put Your email address here. if(empty($_POST[‘name’]) ||
+
+empty($_POST[’email’]) ||
+
+empty($_POST[‘message’]))
+
+{
+
+$errors .= “\n Error: all fields are required”;
+
+}
+
+$name = $_POST[‘name’];
+
+$email_address = $_POST[’email’];
+
+$message = $_POST[‘message’];
+
+if (!preg_match(
+
+“/^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$/i”, $email_address))
+
+{
+
+$errors .= “\n Error: Invalid email address”;
+
+}
+
+if( empty($errors))
+
+{
+
+$to = $myemail;
+
+$email_subject = “Contact form submission: $name”;
+
+$email_body = “You have received a new message. “.
+
+” Here are the details:\n Name: $name \n “.
+
+“Email: $email_address\n Message \n $message”;
+
+$headers = “From: $myemail\n”;
+
+$headers .= “Reply-To: $email_address”;
+
+mail($to,$email_subject,$email_body,$headers);
+
+//redirect to the ‘thank you’ page
+
+header(‘Location: contact-form-thank-you.html’);
+
+}
+
+?>
 
     <!-- Navigation -->
     <nav id="mainNav" class="navbar navbar-default navbar-custom navbar-fixed-top">
@@ -74,260 +133,6 @@
         <!-- /.container-fluid -->
     </nav>
 
-    <!-- Header -->
-    <header>
-        <div class="container">
-            <div class="intro-text">
-                <div class="intro-heading">Himanshu Joshi</div>
-                <div class="intro-lead-in">Junior, University Of Minnesota</div>
-                <a href="#services" class="page-scroll btn btn-xl">About Me</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- About Section -->
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">About</h2>
-                    <h3 class="section-subheading text-muted">The privilege of a lifetime is being who you are  ~  Joseph campbell</h3>
-                </div>
-                <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <table>
-                        <tr>
-                            <!-- <td class="mainBio">
-                                <div class="bio">
-                                    <p class="text-muted" style="text-align:justify; padding-right:1cm">
-                                   I am a Junior at the University of Minnesota, Twin Cities. I have been an all round achiever across academics, sports, performing arts and social work.  I have a very curious path towards computing and the scientific understanding of the universe at large.</p>
-                                </div>
-                            </td> -->
-                            <td>
-                                <img src="img/about/himanshu.jpg" style="width:360px;height:400px;" align = "">
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-            <div class="row text-center">
-            <br><br><br><br><br>
-                <div class="col-md-4">
-                    <h4 class="service-heading">All I do is win...</h4>
-                    <p class="text-muted">not really, but I always try my best. I know there are failures in life but I like to think of them as opportunities to learn more. I like to be efficient with my resources by managing my time and planning ahead. Smart work > Hard work.</p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="service-heading">I’m real</h4>
-                    <p class="text-muted">I'm passionate about what I put my efforts into. I give back to the communities that have given to me. I know where my interests lie so when I make a commitment, I stand by it. So, basically this means you can count on me.  </p>
-                </div>
-                <div class="col-md-4">
-                    <h4 class="service-heading">On a curious path</h4>
-                    <p class="text-muted">Programmer. Coder. Engineer. Problem Solver. <br> I like to dig deep into concepts and understand the things I learn. Being resilient about the things I'm learning quenches my hunger and makes me thought provoking. </p>
-                </div>
-                <!-- <div class="col-md-4"><br><br><br></div>
-                <div class="col-md-4">
-                    <h4 class="service-heading">Artist</h4>
-                    <p class="text-muted">Freestyle Dancer. Dramatist. </p>
-                </div> -->
-                <!-- <div class="col-md-4">
-                    <h4 class="service-heading">Humanitarian</h4>
-                    <p class="text-muted">Social change agent. Bird and snakes protection. Worked with multiple non-profits. Volunteer.</p>
-                </div>
-               <div class="col-md-4">
-                    <h4 class="service-heading">Expressive</h4>
-                    <p class="text-muted">Active participant in Debates, MUNs and content writing. Theatrical Performer. An aficionado of music and good with a guitar.</p>
-                </div> -->
-            </div>
-        </div>
-    </section>
-
-
-
-
-    <!-- Milestones Section -->
-    <section id="about" class="bg-light-gray">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Milestones</h2>
-                    <h3 class="section-subheading text-muted"></h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <ul class="timeline">
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/1.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>August 1999</h4>
-                                    <h4 class="subheading">My Bare Beginnings</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Born in Gururgram, India the youngest and the only son in the family. Grew up and went to schools in Gurugram, Rohtak and Jaipur.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/2.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>May 2015</h4>
-                                    <h4 class="subheading">Finished Secondary Education</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Ranked amongst the top 5 students in Tagore Public School, Jaipur. Excelled at extra-curriculars and a part of the student council.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/3.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>May 2017</h4>
-                                    <h4 class="subheading">High School</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Graduated from Jayshree Periwal High School, Jaipur. Acquired skills I will be using for the rest of my life! I gave back to community and geared up for a big change.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-inverted">
-                            <div class="timeline-image">
-                                <img class="img-circle img-responsive" src="img/about/4.jpg" alt="">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>August 2017</h4>
-                                    <h4 class="subheading">Undergrad Journey Begins</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Bon Voyage! Sowing the seeds for the plants of success. A lot to learn, explore and experience! Involved in multiple student groups and societies across campus. Aspiring computer scientist.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="timeline-image">
-                                <h4 class = "subheading">Another sunrise, Another beginning</h4>
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h4>May 2021</h4>
-                                    <h4 class="subheading">A Bachelor and some Science</h4>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="text-muted">Looking forward to more challenges after 4 years of amazing college experience. As you sow, you shall reap. A coder with work and research experience.</p>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
- <!-- Achievements Section -->
-    <section id="portfolio" >
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Experience</h2>
-                    <h3 class="section-subheading text-muted">It always seems impossible until its done ~ Nelson Mandela</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal1" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/mu2e_logo.jpg" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>Mu2e Experiment by Fermilab</h4>
-                        <p class="text-muted">Undergraduate Reasearch Assistant <br> Lead Developer</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal2" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/saviours-small.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>SAVIOURS: A NGO</h4>
-                        <p class="text-muted">Bird Treatment Camp</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal3" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/lifeskills-small.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>International Life Skills, Values, Gender, School Health and Wellbeing Summit</h4>
-                        <p class="text-muted">Multiple Awards</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal4" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/jairangam-small.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>JAIRANGAM</h4>
-                        <p class="text-muted">Second Prize</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal5" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/fortress-small.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>WORLD ART FORTRESS</h4>
-                        <p class="text-muted">Website and Application development</p>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6 portfolio-item">
-                    <a href="#portfolioModal6" class="portfolio-link" data-toggle="modal">
-                        <div class="portfolio-hover">
-                            <div class="portfolio-hover-content">
-                                <i class="fa fa-plus fa-3x"></i>
-                            </div>
-                        </div>
-                        <img src="img/portfolio/ctc-small.png" class="img-responsive" alt="">
-                    </a>
-                    <div class="portfolio-caption">
-                        <h4>COUNTER TERRORISM CONFERENCE</h4>
-                        <p class="text-muted">Technical Team Head</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
 
     <!-- Contact Section -->
@@ -335,41 +140,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2 class="section-heading">Contact Me</h2>
-                    <h3 class="section-subheading text-muted">Let's get in touch!</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <form method=”POST” name=”contact_form” action="contact-form-handler.html">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Your Name *" id="name" name = "name" required data-validation-required-message="Please enter your name.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Your Email *" id="email" name ="email"required data-validation-required-message="Please enter your email address.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                                <div class="form-group">
-                                    <input type="tel" class="form-control" placeholder="Your Phone *" id="phone" required data-validation-required-message="Please enter your phone number.">
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <textarea class="form-control" placeholder="Your Message *" id="message" name="message" required data-validation-required-message="Please enter a message."></textarea>
-                                    <p class="help-block text-danger"></p>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                            <div class="col-lg-12 text-center">
-                                <div id="success"></div>
-                                <button type="submit" class="btn btn-xl" value="Submit">Send Message</button>
-                            </div>
-                        </div>
-                    </form>
+                    <h3 class="section-subheading text-muted">Thank you for sharing your details! I will reach out to you.</h3>
                 </div>
             </div>
         </div>
@@ -432,7 +203,7 @@
                                 <p> I'm working as the lead developer for the Mu2e Experiment at the School of Physics and Astronomy, University of Minnesota. The goal is to create a particle accelerator to detect particles beyond the standard model. More than 40 institutions are involved and the first beam commissioning is expected to start in 2020 at Muon Campus, Fermilab. My contribution includes:<br>
                                   • Assemble and test components for detector to be placed in particle accelerator at Fermilab, Chicago. A $300M particle physics research project funded by United States Department of Energy to study Muon-to-Electron Conversion.<br>
                                   • Designed a set of GUIs with Python to help create the panels for the detector. The GUIs made sure that standard procedures were followed to make the panels with precision and perfection. The data from these procedures was collected in SQLite.<br>
-                                  • Analyzed the collected data for hundreds of panels using SQL to make the detector efficient.<br><br>
+                                  • Analyzed the collected data for hundreds of panels using SQL to make the detector efficient.<br>
                                 <button type="button" class="btn btn-primary" data-dismiss="modal"><i class="fa fa-times"></i> Close Achievement</button>
                             </div>
                         </div>
